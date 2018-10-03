@@ -1,19 +1,28 @@
 package com.codecool.netflixandchill.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Episode extends BaseModel {
 
+    @Column(nullable = false)
     private Date releaseDate;
 
+    @Column(nullable = false)
     private int runtime;
 
+    @Column(nullable = false)
     private int serialNumber;
 
     @ManyToOne
+    @Column(nullable = false)
     private Season season;
+
+    @ManyToMany(mappedBy = "watchedEpisodes")
+    private List<User> users = new ArrayList<>();
 
     public Episode(String title, String description, Date releaseDate, int runtime, int serialNumber) {
         super(title, description);
@@ -55,5 +64,17 @@ public class Episode extends BaseModel {
 
     public void setSeason(Season season) {
         this.season = season;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
     }
 }

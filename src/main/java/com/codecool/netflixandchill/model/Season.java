@@ -1,6 +1,7 @@
 package com.codecool.netflixandchill.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,14 +9,17 @@ import java.util.List;
 public class Season extends BaseModel {
 
     @OneToMany(mappedBy = "season")
-    private List<Episode> episodes;
+    @Column(nullable = false)
+    private List<Episode> episodes = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date year;
 
+    @Column(nullable = false)
     private int serialNumber;
 
     @ManyToOne
+    @Column(nullable = false)
     private Series series;
 
     public Season(String title, String description, Date year, int serialNumber) {
