@@ -31,6 +31,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Builder.Default
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "episode_id"))
     private List<Episode> watchedEpisodes = new ArrayList<>();
