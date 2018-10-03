@@ -10,6 +10,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SimulateJPA {
 
@@ -44,8 +46,19 @@ public class SimulateJPA {
     }
 
     public static void main(String[] args) {
+        Map<String, String> env = System.getenv();
+        Map<String, Object> configOverrides = new HashMap<>();
+        for (String envName : env.keySet()) {
+            if (envName.contains("DB_USER_NAME")) {
+                configOverrides.put("javax.persistence.jdbc.user", env.get(envName));
+            }
+            if (envName.contains("DB_PASSWORD")) {
+                configOverrides.put("javax.persistence.jdbc.password", env.get(envName));
+            }
+        }
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaexamplePU");
+        EntityManagerFactory emf =
+                Persistence.createEntityManagerFactory("netflixandchill", configOverrides);
         EntityManager em = emf.createEntityManager();
 
         populateDb(em);
