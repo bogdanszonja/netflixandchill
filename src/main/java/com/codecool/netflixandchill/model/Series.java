@@ -1,4 +1,4 @@
-package com.codecool.jpaexample.model;
+package com.codecool.netflixandchill.model;
 
 import java.util.Date;
 import java.util.List;
