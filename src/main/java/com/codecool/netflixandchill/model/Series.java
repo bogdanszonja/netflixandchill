@@ -1,6 +1,7 @@
 package com.codecool.netflixandchill.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,11 +14,11 @@ public class Series extends BaseModel {
     private Date airDate;
 
     @OneToMany(mappedBy = "series")
-    private List<Season> seasons;
+    private List<Season> seasons = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Genre.class)
-    private List<Genre> genres;
+    private List<Genre> genres = new ArrayList<>();
 
     public Series() {
     }
