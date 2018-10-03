@@ -13,11 +13,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String nickname;
+    @Column(unique = true, nullable = false)
+    private String userName;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String emailAddress;
 
+    @Column(nullable = false)
     private String password;
 
     @ManyToMany
@@ -29,8 +31,8 @@ public class User {
     public User() {
     }
 
-    public User(String nickname, String emailAddress, String password, Date registrationDate) {
-        this.nickname = nickname;
+    public User(String userName, String emailAddress, String password, Date registrationDate) {
+        this.userName = userName;
         this.emailAddress = emailAddress;
         this.password = password;
         this.registrationDate = registrationDate;
@@ -44,12 +46,12 @@ public class User {
         this.id = id;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNickname(String userName) {
-        this.nickname = userName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmailAddress() {

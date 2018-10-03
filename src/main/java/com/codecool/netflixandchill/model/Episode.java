@@ -8,13 +8,17 @@ import java.util.List;
 @Entity
 public class Episode extends BaseModel {
 
+    @Column(nullable = false)
     private Date releaseDate;
 
+    @Column(nullable = false)
     private int runtime;
 
+    @Column(nullable = false)
     private int serialNumber;
 
     @ManyToOne
+    @Column(nullable = false)
     private Season season;
 
     @ManyToMany(mappedBy = "watchedEpisodes")
