@@ -21,7 +21,7 @@ public class Series extends BaseModel {
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Genre.class)
-    @Column(nullable = false)
+    @Column(name = "genre", nullable = false)
     private List<Genre> genres = new ArrayList<>();
 
     public Series() {
