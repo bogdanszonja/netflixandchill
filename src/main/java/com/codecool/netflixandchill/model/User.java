@@ -1,11 +1,20 @@
 package com.codecool.netflixandchill.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "users")
 public class User {
 
@@ -29,65 +38,4 @@ public class User {
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
 
-    public User() {
-    }
-
-    public User(String userName, String emailAddress, String password, Date registrationDate) {
-        this.userName = userName;
-        this.emailAddress = emailAddress;
-        this.password = password;
-        this.registrationDate = registrationDate;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Episode> getWatchedEpisodes() {
-        return watchedEpisodes;
-    }
-
-    public void setWatchedEpisodes(List<Episode> watchedEpisodes) {
-        this.watchedEpisodes = watchedEpisodes;
-    }
-
-    public void addEpisode(Episode episode) {
-        watchedEpisodes.add(episode);
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
 }
