@@ -23,6 +23,7 @@ public class User {
     private String password;
 
     @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "episode_id"))
     private List<Episode> watchedEpisodes = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)

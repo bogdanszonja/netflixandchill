@@ -19,7 +19,6 @@ public class Season extends BaseModel {
     private int serialNumber;
 
     @ManyToOne
-    @Column(nullable = false)
     private Series series;
 
     public Season(String title, String description, Date year, int serialNumber) {
