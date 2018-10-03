@@ -1,4 +1,4 @@
-package com.codecool.netflixandchill.Dao.implementation;
+package com.codecool.netflixandchill.dao.implementation;
 
 public class UserDB {
 }
