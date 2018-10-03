@@ -9,14 +9,17 @@ import java.util.List;
 public class Season extends BaseModel {
 
     @OneToMany(mappedBy = "season")
+    @Column(nullable = false)
     private List<Episode> episodes = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date year;
 
+    @Column(nullable = false)
     private int serialNumber;
 
     @ManyToOne
+    @Column(nullable = false)
     private Series series;
 
     public Season(String title, String description, Date year, int serialNumber) {
