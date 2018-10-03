@@ -55,7 +55,7 @@ public class SimulateJPA {
         }
 
         EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("netflixandchill", configOverrides);
+            Persistence.createEntityManagerFactory("netflixandchill", configOverrides);
         EntityManager em = emf.createEntityManager();
 
         populateDb(em);

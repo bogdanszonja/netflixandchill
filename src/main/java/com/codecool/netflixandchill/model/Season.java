@@ -5,18 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Season {
+public class Season extends BaseModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @OneToMany
+    @OneToMany(mappedBy = "season")
     private List<Episode> episodes;
-
-    private String title;
-
-    private String description;
 
     @Temporal(TemporalType.DATE)
     private Date year;
@@ -27,21 +19,12 @@ public class Season {
     private Series series;
 
     public Season(String title, String description, Date year, int serialNumber) {
-        this.title = title;
-        this.description = description;
+        super(title, description);
         this.year = year;
         this.serialNumber = serialNumber;
     }
 
     public Season() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public List<Episode> getEpisodes() {
@@ -50,22 +33,6 @@ public class Season {
 
     public void setEpisodes(List<Episode> episodes) {
         this.episodes = episodes;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Date getYear() {

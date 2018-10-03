@@ -6,6 +6,7 @@
 
     <persistence-unit name="netflixandchill" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--<class>com.codecool.netflixandchill.model.BaseModel</class>-->
         <class>com.codecool.netflixandchill.model.User</class>
         <class>com.codecool.netflixandchill.model.Series</class>
         <class>com.codecool.netflixandchill.model.Season</class>
