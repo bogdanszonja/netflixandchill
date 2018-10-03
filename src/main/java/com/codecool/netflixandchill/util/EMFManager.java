@@ -8,7 +8,7 @@ import java.util.Map;
 public class EMFManager {
 
     private static EntityManagerFactory instance = null;
-    
+
     public static EntityManagerFactory getInstance() {
         if (instance == null) {
             Map<String, String> env = System.getenv();
