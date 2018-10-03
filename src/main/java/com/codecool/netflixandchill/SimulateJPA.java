@@ -25,9 +25,9 @@ public class SimulateJPA {
             e.printStackTrace();
         }
 
-        Series series = new Series("PornSeries", "very good", Status.ENDED, airDate, Arrays.asList(Genre.PORNO, Genre.HORROR));
-        Season season = new Season("Ödön", "Fucky", year, 1);
-        Episode episode = new Episode("SexyBoy", "yeah", releaseDate, 180, 1);
+        Series series = new Series();
+        Season season = new Season();
+        Episode episode = new Episode(releaseDate, 34, 432, null, null);
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
