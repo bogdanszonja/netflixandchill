@@ -1,17 +1,32 @@
 package com.codecool.netflixandchill.model;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Season {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @OneToMany
     private List<Episode> episodes;
     private String title;
     private String description;
     private Date year;
     private int serialNumber;
+    @ManyToOne
     private Series series;
+
+    public Season(String title, String description, Date year, int serialNumber) {
+        this.title = title;
+        this.description = description;
+        this.year = year;
+        this.serialNumber = serialNumber;
+    }
+
+    public Season() {
+    }
 
     public long getId() {
         return id;
@@ -67,5 +82,9 @@ public class Season {
 
     public void setSeries(Series series) {
         this.series = series;
+    }
+
+    public void addEpisode(Episode episode) {
+        episodes.add(episode);
     }
 }
