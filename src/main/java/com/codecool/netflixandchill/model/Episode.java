@@ -18,7 +18,6 @@ public class Episode extends BaseModel {
     private int serialNumber;
 
     @ManyToOne
-    @Column(nullable = false)
     private Season season;
 
     @ManyToMany(mappedBy = "watchedEpisodes")
