@@ -1,4 +1,4 @@
-package com.codecool.netflixandchill.session;
+package com.codecool.netflixandchill.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
