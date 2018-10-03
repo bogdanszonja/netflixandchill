@@ -7,22 +7,26 @@ import java.util.List;
 @Entity
 public class Series extends BaseModel {
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     private Date airDate;
-    @OneToMany(mappedBy = "series")
 
+    @OneToMany(mappedBy = "series")
     private List<Season> seasons;
-//    @Enumerated
-//    private List<Genre> genres;
+
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Genre.class)
+    private List<Genre> genres;
 
     public Series() {
     }
 
-    public Series(String title, String description, Status status, Date airDate) {
+    public Series(String title, String description, Status status, Date airDate, List<Genre> genres) {
         super(title, description);
         this.status = status;
         this.airDate = airDate;
+        this.genres = genres;
     }
 
     public Status getStatus() {
@@ -49,13 +53,13 @@ public class Series extends BaseModel {
         this.seasons = seasons;
     }
 
-//    public List<Genre> getGenres() {
-//        return genres;
-//    }
-//
-//    public void setGenres(List<Genre> genres) {
-//        this.genres = genres;
-//    }
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
 
     public void addSeason(Season season) {
         seasons.add(season);

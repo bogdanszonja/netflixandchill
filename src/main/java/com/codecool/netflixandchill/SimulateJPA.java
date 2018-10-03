@@ -8,10 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class SimulateJPA {
 
@@ -28,7 +25,7 @@ public class SimulateJPA {
             e.printStackTrace();
         }
 
-        Series series = new Series("PornSeries", "very good", Status.ENDED, airDate);
+        Series series = new Series("PornSeries", "very good", Status.ENDED, airDate, Arrays.asList(Genre.PORNO, Genre.HORROR));
         Season season = new Season("Ödön", "Fucky", year, 1);
         Episode episode = new Episode("SexyBoy", "yeah", releaseDate, 180, 1);
 

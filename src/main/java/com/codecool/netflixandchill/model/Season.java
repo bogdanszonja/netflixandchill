@@ -10,6 +10,7 @@ public class Season extends BaseModel {
     @OneToMany(mappedBy = "season")
     private List<Episode> episodes;
 
+    @Temporal(TemporalType.DATE)
     private Date year;
 
     private int serialNumber;
