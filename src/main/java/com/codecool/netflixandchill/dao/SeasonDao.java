@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface SeasonDao {
     void add();
-    Season find(int id);
-    void remove(int id);
+
+    Season find(long seasonId);
 
     List<Season> getAll();
 }

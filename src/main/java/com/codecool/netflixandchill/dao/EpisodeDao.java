@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface EpisodeDao {
     void add();
-    Episode find(int id);
-    void remove(int id);
+
+    Episode find(long episodeId);
 
     List<Episode> getAll();
 }
