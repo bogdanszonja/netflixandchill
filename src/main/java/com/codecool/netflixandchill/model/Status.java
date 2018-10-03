@@ -1,4 +1,4 @@
-package com.codecool.jpaexample.model;
+package com.codecool.netflixandchill.model;
 
 public enum Status {
 
