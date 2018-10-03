@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.codecool.jpaexample</groupId>
-    <artifactId>Netflix and Chill</artifactId>
+    <groupId>com.codecool.netflixandchill</groupId>
+    <artifactId>NetflixAndChill</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Netflix and Chill</name>
@@ -25,7 +25,7 @@
     </properties>
 
     <build>
-        <finalName>codecoolshop</finalName>
+        <finalName>NetflixAndChill</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
 
         <plugins>
