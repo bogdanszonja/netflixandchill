@@ -6,15 +6,23 @@ import java.util.List;
 
 @Entity
 public class Season {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @OneToMany
     private List<Episode> episodes;
+
     private String title;
+
     private String description;
+
+    @Temporal(TemporalType.DATE)
     private Date year;
+
     private int serialNumber;
+
     @ManyToOne
     private Series series;
 

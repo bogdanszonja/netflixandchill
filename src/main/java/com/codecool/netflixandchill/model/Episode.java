@@ -5,14 +5,21 @@ import java.util.Date;
 
 @Entity
 public class Episode {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String title;
+
     private String description;
+
     private Date releaseDate;
+
     private int runtime;
+
     private int serialNumber;
+
     @ManyToOne
     private Season season;
 

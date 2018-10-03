@@ -6,23 +6,33 @@ import java.util.List;
 
 @Entity
 public class Series {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String title;
+
     private String description;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
+
     private Date airDate;
+
     @OneToMany
     private List<Season> seasons;
-//    @Enumerated
-//    private List<Genre> genres;
 
-    public Series(String title, String description, Status status, Date airDate) {
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Genre.class)
+    private List<Genre> genres;
+
+    public Series(String title, String description, Status status, Date airDate, List<Genre> genres) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.airDate = airDate;
+        this.genres = genres;
     }
 
     public Series() {
@@ -76,13 +86,13 @@ public class Series {
         this.seasons = seasons;
     }
 
-//    public List<Genre> getGenres() {
-//        return genres;
-//    }
-//
-//    public void setGenres(List<Genre> genres) {
-//        this.genres = genres;
-//    }
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
 
     public void addSeason(Season season) {
         seasons.add(season);
