@@ -5,51 +5,24 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Series {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String title;
-    private String description;
+public class Series extends BaseModel {
+
     private Status status;
+
     private Date airDate;
-    @OneToMany
+    @OneToMany(mappedBy = "series")
+
     private List<Season> seasons;
 //    @Enumerated
 //    private List<Genre> genres;
 
-    public Series(String title, String description, Status status, Date airDate) {
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.airDate = airDate;
-    }
-
     public Series() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public Series(String title, String description, Status status, Date airDate) {
+        super(title, description);
+        this.status = status;
+        this.airDate = airDate;
     }
 
     public Status getStatus() {
