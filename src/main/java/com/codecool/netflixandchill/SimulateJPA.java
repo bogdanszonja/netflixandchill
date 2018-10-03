@@ -29,10 +29,6 @@ public class SimulateJPA {
         Season season = new Season("Ödön", "Fucky", year, 1);
         Episode episode = new Episode("SexyBoy", "yeah", releaseDate, 180, 1);
 
-//          NullPointerException solve the problem later
-//        series.addSeason(season);
-//        season.addEpisode(episode);
-
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(series);
