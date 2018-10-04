@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -30,9 +30,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "episode_id"))
-    private List<Episode> watchedEpisodes = new ArrayList<>();
+    private Collection<Episode> watchedEpisodes = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
@@ -44,4 +44,9 @@ public class User {
         this.password = password;
         this.registrationDate = registrationDate;
     }
+
+    public void addWatchedEpisodes(Episode episode) {
+        watchedEpisodes.add(episode);
+    }
+
 }

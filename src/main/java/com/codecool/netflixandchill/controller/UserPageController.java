@@ -3,6 +3,7 @@ package com.codecool.netflixandchill.controller;
 import com.codecool.netflixandchill.config.TemplateEngineUtil;
 import com.codecool.netflixandchill.dao.UserDao;
 import com.codecool.netflixandchill.dao.implementation.UserDaoDB;
+import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.util.SessionManager;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -13,39 +14,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(urlPatterns = "/user-page")
+public class UserPageController extends HttpServlet {
 
-    private UserDao userDaoDB = UserDaoDB.getInstance();
     private SessionManager sessionManager = SessionManager.getInstance();
+    private UserDao userDaoDB = UserDaoDB.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = sessionManager.getHttpSessionRedirect(request);
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
 
-        engine.process("login.html", context, response.getWriter());
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = sessionManager.getHttpSession(request);
-
         if (session == null) {
-            response.sendRedirect("/login");
+            response.sendRedirect("/");
             return;
         }
 
-        String email = request.getParameter("login_email");
-        String password = request.getParameter("login_password");
+        long userId = (long) session.getAttribute("userId");
+        List<Episode> episodes = userDaoDB.getWatchedEpisodesById(userId);
+        context.setVariable("episodes", episodes);
 
-        if (userDaoDB.validLogin(email, password)) {
-            session.setAttribute("userId", userDaoDB.find(email).getId());
-            response.sendRedirect("/user-page");
-            return;
-        }
-
-        response.sendRedirect("/login");
+        engine.process("user_page.html", context, response.getWriter());
     }
 }

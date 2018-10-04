@@ -1,5 +1,6 @@
 package com.codecool.netflixandchill.dao;
 
+import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.model.User;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface UserDao {
     boolean validRegister(String email, String password, String confirmedPassword);
 
     boolean validLogin(String email, String password);
+
+    List<Episode> getWatchedEpisodesById(long userId);
 }

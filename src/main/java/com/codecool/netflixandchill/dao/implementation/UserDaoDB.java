@@ -1,6 +1,7 @@
 package com.codecool.netflixandchill.dao.implementation;
 
 import com.codecool.netflixandchill.dao.UserDao;
+import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.model.User;
 import com.codecool.netflixandchill.util.EMFManager;
 import com.codecool.netflixandchill.util.TransactionManager;
@@ -84,5 +85,19 @@ public class UserDaoDB implements UserDao {
         User user = find(email);
 
         return (user != null) && (user.getPassword().equals(password));
+    }
+
+    @Override
+    public List<Episode> getWatchedEpisodesById(long userId) {
+        EntityManager em = emfManager.createEntityManager();
+
+        List<Episode> result = em.createQuery(
+                "SELECT e " +
+                    "FROM Episode e INNER JOIN e.users u " +
+                    "WHERE u.id = :userId", Episode.class)
+                .setParameter("userId", userId)
+                .getResultList();
+        em.close();
+        return result;
     }
 }
