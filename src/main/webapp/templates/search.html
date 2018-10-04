@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Netflix</title>
-    </head>
-    <body>
-        <div class="search" th:each="serie : ${series}">
-            <p th:text="${series}">haliho</p>
-        </div>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Netflix</title>
+</head>
+<body>
+Series
+<table>
+    <tr>
+        <td>
+            <div class="search" th:each="show : ${series}">
+                    <p th:text="${show.getTitle()}">haliho</p>
+                    <form action="add">
+                        <button type="submit">Add to my list</button>
+                    </form>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
 </html>
