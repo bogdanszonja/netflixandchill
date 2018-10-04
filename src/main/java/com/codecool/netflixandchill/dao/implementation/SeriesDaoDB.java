@@ -47,4 +47,16 @@ public class SeriesDaoDB implements SeriesDao {
         em.close();
         return result;
     }
+
+    @Override
+    public List<Series> findBySubstring(String substring) {
+        EntityManager em = emfManager.createEntityManager();
+        List<Series> result = em.createQuery(
+                "SELECT s " +
+                        "FROM Series s WHERE s.title LIKE '" + substring + "'", Series.class)
+                .getResultList();
+        em.close();
+        return result;
+
+    }
 }
