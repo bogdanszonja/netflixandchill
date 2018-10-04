@@ -28,15 +28,26 @@ public class SimulateJPA {
         Series series = Series.builder().title("Szonja").description("Anita").airDate(new Date())
                 .status(Status.RUNNING).genres(Collections.singletonList(Genre.HORROR)).build();
         Season season = Season.builder().title("Oli").description("Zoli").year(new Date()).serialNumber(1).build();
-        Episode episode = Episode.builder().title("b").description("dasdasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode = Episode.builder().title("b").description("dasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode2 = Episode.builder().title("b b").description("dsasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode3 = Episode.builder().title("bbb").description("dasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode4 = Episode.builder().title("bbbbb").description("dagfsdasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode5 = Episode.builder().title("bbbbbb").description("ddgtrsd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode6 = Episode.builder().title("bbbbbbbb").description("dazthbtzdasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
 
-        System.out.println(series.getTitle());
-        System.out.println(series.getDescription());
+        User user = User.builder().emailAddress("oli").password("pina").registrationDate(new Date()).userName("olcsi").build();
+        user.addWatchedEpisodes(episode);
+        user.addWatchedEpisodes(episode2);
+        user.addWatchedEpisodes(episode3);
+        user.addWatchedEpisodes(episode4);
+        user.addWatchedEpisodes(episode5);
+        user.addWatchedEpisodes(episode6);
+
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(series);
         em.persist(season);
-        em.persist(episode);
+        em.persist(user);
         transaction.commit();
 
     }

@@ -86,4 +86,18 @@ public class UserDaoDB implements UserDao {
 
         return (user != null) && (user.getPassword().equals(password));
     }
+
+    @Override
+    public List<Episode> getWatchedEpisodesById(long userId) {
+        EntityManager em = emfManager.createEntityManager();
+
+        List<Episode> result = em.createQuery(
+                "SELECT e " +
+                    "FROM Episode e INNER JOIN e.users u " +
+                    "WHERE u.id = :userId", Episode.class)
+                .setParameter("userId", userId)
+                .getResultList();
+        em.close();
+        return result;
+    }
 }
