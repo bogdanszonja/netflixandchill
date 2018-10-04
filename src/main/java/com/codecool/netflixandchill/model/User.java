@@ -44,4 +44,8 @@ public class User {
         this.password = password;
         this.registrationDate = registrationDate;
     }
+
+    public void addEpisodeToUser(Episode episode) {
+        watchedEpisodes.add(episode);
+    }
 }
