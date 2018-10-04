@@ -4,6 +4,7 @@ import com.codecool.netflixandchill.model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,15 +25,20 @@ public class SimulateJPA {
             e.printStackTrace();
         }
 
-        Series series = new Series();
-        Season season = new Season();
+        Series series = Series.builder().title("Szonja").description("Anita").airDate(new Date())
+                .status(Status.RUNNING).genres(Collections.singletonList(Genre.HORROR)).build();
+        Season season = Season.builder().title("Oli").description("Zoli").year(new Date()).serialNumber(1).build();
+        Episode episode = Episode.builder().title("b").description("dasdasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
 
-//        EntityTransaction transaction = em.getTransaction();
-//        transaction.begin();
-//        em.persist(series);
-//        em.persist(season);
-////        em.persist(episode);
-//        transaction.commit();
+        System.out.println(series.getTitle());
+        System.out.println(series.getDescription());
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(series);
+        em.persist(season);
+        em.persist(episode);
+        transaction.commit();
+
     }
 
     public static void main(String[] args) {

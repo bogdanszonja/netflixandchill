@@ -11,12 +11,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@EqualsAndHashCode(callSuper=true)
-
 public class Season extends BaseModel {
 
-    @Builder.Default
     @OneToMany(mappedBy = "season")
     @Column(nullable = false)
     private List<Episode> episodes = new ArrayList<>();
@@ -29,6 +25,13 @@ public class Season extends BaseModel {
 
     @ManyToOne
     private Series series;
+
+    @Builder
+    public Season(String title, String description, Date year, int serialNumber) {
+        super(title, description);
+        this.year = year;
+        this.serialNumber = serialNumber;
+    }
 
     public void addEpisode(Episode episode) {
         episodes.add(episode);
