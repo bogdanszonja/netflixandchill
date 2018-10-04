@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
         String confirmedPassword = request.getParameter("password_confirm");
 
         if (userDaoDB.confirmPassword(password, confirmedPassword)) {
-            userDaoDB.add();
+            userDaoDB.add(null);
         }
 
         response.sendRedirect("/login");

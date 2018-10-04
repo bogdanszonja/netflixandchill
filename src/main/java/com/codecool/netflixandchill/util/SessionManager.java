@@ -15,6 +15,8 @@ public class SessionManager {
         return instance;
     }
 
+    private SessionManager() {}
+
     public HttpSession getHttpSessionRedirect(HttpServletRequest req) {
         HttpSession session = req.getSession(false);
 
