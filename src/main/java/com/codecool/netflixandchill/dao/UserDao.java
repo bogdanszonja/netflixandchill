@@ -1,5 +1,6 @@
 package com.codecool.netflixandchill.dao;
 
+import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.model.User;
 
 import java.util.List;

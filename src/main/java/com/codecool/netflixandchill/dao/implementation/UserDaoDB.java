@@ -1,6 +1,7 @@
 package com.codecool.netflixandchill.dao.implementation;
 
 import com.codecool.netflixandchill.dao.UserDao;
+import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.model.User;
 import com.codecool.netflixandchill.util.EMFManager;
 import com.codecool.netflixandchill.util.TransactionManager;
