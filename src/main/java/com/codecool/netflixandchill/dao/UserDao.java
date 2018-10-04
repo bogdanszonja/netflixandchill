@@ -12,4 +12,6 @@ public interface UserDao {
     void remove(long userId);
 
     List<User> getAll();
+
+    boolean confirmPassword(String password, String confirmedPassword);
 }
