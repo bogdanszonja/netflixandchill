@@ -24,4 +24,38 @@
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
     </body>
+
+    <meta charset="UTF-8">
+    <title>Netflix</title>
+</head>
+<body>
+<div class="hello" th:each="episode : ${episodes}">
+    <table style="width:100%">
+        <tr>
+            <th>Title</th>
+            <th>Decription</th>
+            <th>RunTime</th>
+        </tr>
+        <tr>
+            <td th:text="${episode.getTitle()}"></td>
+            <td th:text="${episode.getDescription()}">Smith</td>
+            <td th:text="${episode.getRuntime()}">50</td>
+        </tr>
+    </table>
+</div>
+
+<form class="example" action="search">
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<form action="login">
+    <button type="submit">Login</button>
+</form>
+
+<form action="register">
+    <button type="submit">Register</button>
+</form>
+
+</body>
 </html>
