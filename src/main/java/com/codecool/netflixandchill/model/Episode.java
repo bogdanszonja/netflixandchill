@@ -1,7 +1,6 @@
 package com.codecool.netflixandchill.model;
 
 import lombok.*;
-import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,8 +11,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper=true)
-@Builder
 public class Episode extends BaseModel {
 
     @Column(nullable = false)
@@ -28,9 +25,16 @@ public class Episode extends BaseModel {
     @ManyToOne
     private Season season;
 
-    @Builder.Default
     @ManyToMany(mappedBy = "watchedEpisodes")
     private List<User> users = new ArrayList<>();
+
+    @Builder
+    public Episode(String title, String description, Date releaseDate, int runtime, int serialNumber) {
+        super(title, description);
+        this.releaseDate = releaseDate;
+        this.runtime = runtime;
+        this.serialNumber = serialNumber;
+    }
 
     public void addUser(User user) {
         users.add(user);

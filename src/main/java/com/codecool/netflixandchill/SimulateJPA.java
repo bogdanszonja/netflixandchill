@@ -25,15 +25,20 @@ public class SimulateJPA {
             e.printStackTrace();
         }
 
-        Series series = new Series();
-        Season season = new Season();
+        Series series = Series.builder().title("Szonja").description("Anita").airDate(new Date())
+                .status(Status.RUNNING).genres(Collections.singletonList(Genre.HORROR)).build();
+        Season season = Season.builder().title("Oli").description("Zoli").year(new Date()).serialNumber(1).build();
+        Episode episode = Episode.builder().title("b").description("dasdasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
 
+        System.out.println(series.getTitle());
+        System.out.println(series.getDescription());
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(series);
         em.persist(season);
-//        em.persist(episode);
+        em.persist(episode);
         transaction.commit();
+
     }
 
     public static void main(String[] args) {

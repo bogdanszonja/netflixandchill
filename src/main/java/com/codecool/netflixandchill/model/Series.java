@@ -11,9 +11,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@EqualsAndHashCode(callSuper=true)
-
 public class Series extends BaseModel {
 
     @Enumerated(EnumType.STRING)
@@ -23,18 +20,28 @@ public class Series extends BaseModel {
     @Temporal(TemporalType.DATE)
     private Date airDate;
 
-    @Builder.Default
     @OneToMany(mappedBy = "series")
     @Column(nullable = false)
     private List<Season> seasons = new ArrayList<>();
 
-    @Builder.Default
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Genre.class)
     @Column(name = "genre", nullable = false)
     private List<Genre> genres = new ArrayList<>();
 
+    @Builder
+    public Series(String title, String description, Status status, Date airDate, List<Genre> genres) {
+        super(title, description);
+        this.status = status;
+        this.airDate = airDate;
+        this.genres = genres;
+    }
+
     public void addSeason(Season season) {
         seasons.add(season);
+    }
+
+    public void addGenre(Genre genre) {
+        genres.add(genre);
     }
 }
