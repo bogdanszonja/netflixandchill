@@ -1,29 +1,26 @@
 package com.codecool.netflixandchill.controller;
 
 import com.codecool.netflixandchill.config.TemplateEngineUtil;
+import com.codecool.netflixandchill.dao.UserDao;
 import com.codecool.netflixandchill.dao.implementation.UserDaoDB;
-import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.model.User;
+import com.codecool.netflixandchill.util.SessionManager;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @WebServlet(urlPatterns = {"/register"})
 public class RegisterController extends HttpServlet {
 
-    private UserDaoDB userDaoDB = UserDaoDB.getInstance();
+    private UserDao userDaoDB = UserDaoDB.getInstance();
+    private SessionManager sessionManager = SessionManager.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -35,14 +32,22 @@ public class RegisterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = sessionManager.getHttpSession(request);
+
+        if (session == null) {
+            response.sendRedirect("/register");
+            return;
+        }
+
         String userName = request.getParameter("register_username");
         String email = request.getParameter("register_email");
         String password = request.getParameter("register_password");
         String confirmedPassword = request.getParameter("password_confirm");
 
-        if (userDaoDB.confirmPassword(password, confirmedPassword)) {
-            userDaoDB.add(User.builder().userName(userName).emailAddress(email).password(password).build());
+        if (userDaoDB.validRegister(email, password, confirmedPassword)) {
+            userDaoDB.add(User.builder().userName(userName).emailAddress(email).password(password).registrationDate(new Date()).build());
             response.sendRedirect("/login");
+            return;
         }
 
         response.sendRedirect("/register");
