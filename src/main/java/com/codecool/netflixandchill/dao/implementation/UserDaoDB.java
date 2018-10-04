@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 public class UserDaoDB implements UserDao {
+
     private TransactionManager transactionManager = TransactionManager.getInstance();
     private EntityManagerFactory emfManager = EMFManager.getInstance();
     private static UserDaoDB instance = null;
@@ -20,6 +21,8 @@ public class UserDaoDB implements UserDao {
         }
         return instance;
     }
+
+    private UserDaoDB() {}
 
     @Override
     public void add(User user) {
@@ -37,11 +40,24 @@ public class UserDaoDB implements UserDao {
     }
 
     @Override
+    public User find(String email) {
+        EntityManager em = emfManager.createEntityManager();
+
+        List<User> result = em.createQuery(
+                "SELECT u " +
+                    "FROM User u " +
+                    "WHERE u.emailAddress = :email", User.class)
+                .setParameter("email", email)
+                .getResultList();
+        em.close();
+        return (result.size() != 0) ? result.get(0): null;
+    }
+
+    @Override
     public void remove(long userId) {
         EntityManager em = emfManager.createEntityManager();
         em.remove(userId);
         em.close();
-
     }
 
     @Override
@@ -50,9 +66,23 @@ public class UserDaoDB implements UserDao {
 
         List<User> result = em.createQuery(
                 "SELECT u " +
-                        "FROM Series u ", User.class)
+                    "FROM Series u ", User.class)
                 .getResultList();
         em.close();
         return result;
+    }
+
+    @Override
+    public boolean validRegister(String email, String password, String confirmedPassword) {
+        User user = find(email);
+
+        return (user == null) && (password.equals(confirmedPassword));
+    }
+
+    @Override
+    public boolean validLogin(String email, String password) {
+        User user = find(email);
+
+        return (user != null) && (user.getPassword().equals(password));
     }
 }

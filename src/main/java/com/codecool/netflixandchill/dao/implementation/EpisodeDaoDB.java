@@ -23,6 +23,8 @@ public class EpisodeDaoDB implements EpisodeDao {
         return instance;
     }
 
+    private EpisodeDaoDB() {}
+
     @Override
     public void add(Episode episode) {
         EntityManager em = emfManager.createEntityManager();

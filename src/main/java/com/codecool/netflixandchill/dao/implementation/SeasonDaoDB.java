@@ -21,6 +21,8 @@ public class SeasonDaoDB implements SeasonDao {
         return instance;
     }
 
+    private SeasonDaoDB() {}
+
     @Override
     public void add(Season season) {
         EntityManager em = emfManager.createEntityManager();

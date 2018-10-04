@@ -1,6 +1,7 @@
 package com.codecool.netflixandchill.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,11 +30,18 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "episode_id"))
     private List<Episode> watchedEpisodes = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
 
+    @Builder
+    public User(String userName, String emailAddress, String password, Date registrationDate) {
+        this.userName = userName;
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.registrationDate = registrationDate;
+    }
 }

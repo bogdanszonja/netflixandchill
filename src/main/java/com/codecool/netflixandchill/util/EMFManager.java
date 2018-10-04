@@ -26,4 +26,6 @@ public class EMFManager {
         }
         return instance;
     }
+
+    private EMFManager() {}
 }

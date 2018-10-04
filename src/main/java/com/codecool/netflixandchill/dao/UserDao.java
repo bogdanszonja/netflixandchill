@@ -9,7 +9,13 @@ public interface UserDao {
 
     User find(long userId);
 
+    User find(String email);
+
     void remove(long userId);
 
     List<User> getAll();
+
+    boolean validRegister(String email, String password, String confirmedPassword);
+
+    boolean validLogin(String email, String password);
 }

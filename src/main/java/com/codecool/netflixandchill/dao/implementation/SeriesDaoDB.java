@@ -21,6 +21,8 @@ public class SeriesDaoDB implements SeriesDao {
         return instance;
     }
 
+    private SeriesDaoDB() {}
+
     @Override
     public void add(Series series) {
         EntityManager em = emfManager.createEntityManager();
