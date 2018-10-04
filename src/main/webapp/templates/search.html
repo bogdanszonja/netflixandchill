@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Netflix</title>
-</head>
-<body>
-Series
-<div class="search" th:each="serie : ${series}">
-    <p th:text="${series}">haliho</p>
-</div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Netflix</title>
+    </head>
+    <body>
+        <div class="search" th:each="serie : ${series}">
+            <p th:text="${series}">haliho</p>
+        </div>
+    </body>
 </html>
