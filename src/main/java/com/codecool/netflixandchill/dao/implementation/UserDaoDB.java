@@ -9,7 +9,12 @@ import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 public class UserDaoDB implements UserDao {
+
     private EntityManagerFactory emfManager = EMFManager.getInstance();
+
+    private static UserDaoDB instance = new UserDaoDB();
+
+    private UserDaoDB() {}
 
     @Override
     public void add() {
@@ -39,5 +44,17 @@ public class UserDaoDB implements UserDao {
                 .getResultList();
         em.close();
         return result;
+    }
+
+    @Override
+    public boolean confirmPassword(String password, String confirmedPassword) {
+        if (password.equals(confirmedPassword)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static UserDaoDB getInstance() {
+        return instance;
     }
 }
