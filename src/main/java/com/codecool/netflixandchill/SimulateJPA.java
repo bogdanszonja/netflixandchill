@@ -4,7 +4,6 @@ import com.codecool.netflixandchill.model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,12 +27,12 @@ public class SimulateJPA {
         Series series = new Series();
         Season season = new Season();
 
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(series);
-        em.persist(season);
-//        em.persist(episode);
-        transaction.commit();
+//        EntityTransaction transaction = em.getTransaction();
+//        transaction.begin();
+//        em.persist(series);
+//        em.persist(season);
+////        em.persist(episode);
+//        transaction.commit();
     }
 
     public static void main(String[] args) {

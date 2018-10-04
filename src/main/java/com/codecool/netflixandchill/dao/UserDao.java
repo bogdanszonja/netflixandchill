@@ -5,7 +5,7 @@ import com.codecool.netflixandchill.model.User;
 import java.util.List;
 
 public interface UserDao {
-    void add();
+    void add(User user);
 
     User find(long userId);
 
