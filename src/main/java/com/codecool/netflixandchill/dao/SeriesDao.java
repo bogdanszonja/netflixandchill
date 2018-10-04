@@ -10,4 +10,6 @@ public interface SeriesDao {
     Series find(long seriesId);
 
     List<Series> getAll();
+
+    List<Series> findBySubstring(String substring);
 }
