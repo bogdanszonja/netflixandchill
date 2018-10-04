@@ -6,6 +6,9 @@
     <title>Netflix</title>
 </head>
 <body>
-    <p th:value="${seasons}">haliho</p>
+<div class="hello" th:each="episode : ${episodes}">
+    <p th:text="${episode}">haliho</p>
+</div>
+
 </body>
 </html>
