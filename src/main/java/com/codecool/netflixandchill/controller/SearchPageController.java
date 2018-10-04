@@ -2,6 +2,7 @@ package com.codecool.netflixandchill.controller;
 
 import com.codecool.netflixandchill.config.TemplateEngineUtil;
 import com.codecool.netflixandchill.dao.SeriesDao;
+import com.codecool.netflixandchill.dao.implementation.SeriesDaoDB;
 import com.codecool.netflixandchill.model.Series;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -21,14 +22,12 @@ public class SearchPageController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
 
-        String searchFromUrl = request.getParameter("search");
+        String searchWord = request.getParameter("search");
 
         SeriesDao seriesDao = SeriesDaoDB.getInstance();
-        List<Series> searchedSeries = seriesDao.findBySubstring(searchFromUrl);
+        List<Series> searchedSeries = seriesDao.findBySubstring(searchWord);
 
         engine.process("search.html", context, response.getWriter());
-
-
 
     }
 
