@@ -1,7 +1,6 @@
 package com.codecool.netflixandchill.dao.implementation;
 
 import com.codecool.netflixandchill.dao.SeasonDao;
-import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.model.Season;
 import com.codecool.netflixandchill.util.EMFManager;
 
@@ -26,9 +25,11 @@ public class SeasonDaoDB implements SeasonDao {
     public List<Season> getAll() {
         EntityManager em = emfManager.createEntityManager();
 
-        return em.createQuery(
-                "SELECT e " +
-                        "FROM Season e ", Season.class)
+        List<Season> result = em.createQuery(
+                "SELECT s " +
+                        "FROM Season s ", Season.class)
                 .getResultList();
+        em.close();
+        return result;
     }
 }

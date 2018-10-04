@@ -28,6 +28,7 @@ public class EpisodeDaoDB implements EpisodeDao {
                 "SELECT e " +
                         "FROM Episode e ", Episode.class)
                 .getResultList();
+        em.close();
         return result;
     }
 }
