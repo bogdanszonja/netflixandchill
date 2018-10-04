@@ -1,7 +1,6 @@
 package com.codecool.netflixandchill.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public abstract class BaseModel {
 
     @Id
@@ -24,4 +22,8 @@ public abstract class BaseModel {
     @Column(nullable = false)
     private String description;
 
+    public BaseModel(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 }

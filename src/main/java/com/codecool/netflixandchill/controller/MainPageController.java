@@ -1,30 +1,29 @@
 package com.codecool.netflixandchill.controller;
 
 import com.codecool.netflixandchill.config.TemplateEngineUtil;
-import com.codecool.netflixandchill.model.Episode;
+import com.codecool.netflixandchill.dao.implementation.EpisodeDaoDB;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 @WebServlet(urlPatterns = {"/"})
 public class MainPageController extends HttpServlet {
+    private static final long serialVersionUID = 2L;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
+
+        EpisodeDaoDB episodeDaoDB = new EpisodeDaoDB();
+        context.setVariable("seasons", episodeDaoDB.getAll());
+
+        engine.process("index.html", context, response.getWriter());
 
     }
 

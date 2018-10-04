@@ -1,9 +1,6 @@
 package com.codecool.netflixandchill.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +11,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Series extends BaseModel {
 
     @Enumerated(EnumType.STRING)
@@ -33,7 +29,19 @@ public class Series extends BaseModel {
     @Column(name = "genre", nullable = false)
     private List<Genre> genres = new ArrayList<>();
 
+    @Builder
+    public Series(String title, String description, Status status, Date airDate, List<Genre> genres) {
+        super(title, description);
+        this.status = status;
+        this.airDate = airDate;
+        this.genres = genres;
+    }
+
     public void addSeason(Season season) {
         seasons.add(season);
+    }
+
+    public void addGenre(Genre genre) {
+        genres.add(genre);
     }
 }
