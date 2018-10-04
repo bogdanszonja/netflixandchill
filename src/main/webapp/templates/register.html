@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+        <form action="/register" method="post" name="register">
+            <div class="container">
+                <h2>Register</h2>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+                <label for="username"><b>Username</b></label><br>
+                <input id="username" type="text" placeholder="Enter Username" name="register_username" required><br><br>
+                <label for="register_email"><b>Email</b></label><br>
+                <input id="register_email" type="text" placeholder="Enter Email" name="register_email" required><br><br>
+                <label for="register_password"><b>Password</b></label><br>
+                <input id="register_password" type="password" placeholder="Enter Password" name="register_password" required><br><br>
+                <label for="password_confirm"><b>Confirm Password</b></label><br>
+                <input id="password_confirm" type="password" placeholder="Confirm Password" name="password_confirm" required>
+                <hr>
+                <button type="submit" class="register_button">Register</button>
+            </div>
+        </form>
+    </body>
+</html>
