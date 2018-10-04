@@ -6,8 +6,8 @@
     </head>
     <body>
     <div class="hello">
-        <ul th:each="episode : ${episodes}">Watched Episodes
-        <li th:text="${episode.getTitle()}"></li>
+        <ul>Watched Episodes
+        <li th:each="episode : ${episodes}" th:text="${episode.getTitle()}"></li>
         </ul>
     </div>
 </body>

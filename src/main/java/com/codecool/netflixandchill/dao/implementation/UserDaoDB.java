@@ -8,6 +8,7 @@ import com.codecool.netflixandchill.util.TransactionManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
 public class UserDaoDB implements UserDao {
@@ -71,6 +72,21 @@ public class UserDaoDB implements UserDao {
                 .getResultList();
         em.close();
         return result;
+    }
+
+    @Override
+    public void addEpisode(long episodeId, long userId) {
+        EntityManager em = emfManager.createEntityManager();
+
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        User user = em.find(User.class, userId);
+        Episode episode = em.find(Episode.class, episodeId);
+        user.getWatchedEpisodes().add(episode);
+        em.persist(user);
+        transaction.commit();
+
+        em.close();
     }
 
     @Override

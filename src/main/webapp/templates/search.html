@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Netflix</title>
-</head>
-<body>
-Series
-<table>
-    <tr>
-        <td>
-            <div class="search" th:each="show : ${series}">
-                    <p th:text="${show.getTitle()}">haliho</p>
-                    <form action="add">
-                        <button type="submit">Add to my list</button>
-                    </form>
-            </div>
-        </td>
-    </tr>
-</table>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Netflix</title>
+    </head>
+    <body>
+        <h2>Episodes</h2>
+        <table>
+            <tr>
+                <td>
+                    <div class="search" th:each="episode : ${episodes}">
+                        <p th:text="${episode.getTitle()}">haliho</p>
+                        <form th:classappend="${userId == null} ? 'd-none' : ''" method="post">
+                            <button class="btn btn-success" type="submit" th:value="${episode.getId()}"
+                                    name="episode">+ Add to watched episodes</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>

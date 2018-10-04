@@ -5,23 +5,30 @@
         <title>Netflix</title>
     </head>
     <body>
-        <div class="hello" th:each="episode : ${episodes}">
+        <div class="hello">
             <table style="width:100%">
                 <tr>
                     <th>Title</th>
-                    <th>Decription</th>
+                    <th>Description</th>
                     <th>RunTime</th>
+                    <!--<th></th>-->
                 </tr>
-                <tr>
+                <tr th:each="episode : ${episodes}">
                     <td th:text="${episode.getTitle()}"></td>
                     <td th:text="${episode.getDescription()}">Smith</td>
                     <td th:text="${episode.getRuntime()}">50</td>
+                    <!--<td>-->
+                        <!--<form method="post">-->
+                        <!--<button class="btn btn-success" type="submit" th:value="${episode.getId()}"-->
+                                <!--name="episode">+ Add to watched episodes</button>-->
+                        <!--</form>-->
+                    <!--</td>-->
                 </tr>
             </table>
         </div>
         <form class="example" action="search">
             <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
+            <button type="submit">Search<i class="fa fa-search"></i></button>
         </form>
         <form action="login">
             <button type="submit">Login</button>

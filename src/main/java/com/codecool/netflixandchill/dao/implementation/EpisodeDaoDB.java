@@ -50,4 +50,16 @@ public class EpisodeDaoDB implements EpisodeDao {
         em.close();
         return result;
     }
+
+    @Override
+    public List<Episode> findBySubstring(String substring) {
+        EntityManager em = emfManager.createEntityManager();
+        List<Episode> result = em.createQuery(
+                "SELECT e " +
+                        "FROM Episode e WHERE e.title LIKE :param", Episode.class)
+                .setParameter("param", substring)
+                .getResultList();
+        em.close();
+        return result;
+    }
 }

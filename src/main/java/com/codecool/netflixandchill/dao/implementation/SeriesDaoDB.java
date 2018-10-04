@@ -60,6 +60,5 @@ public class SeriesDaoDB implements SeriesDao {
                 .getResultList();
         em.close();
         return result;
-
     }
 }
