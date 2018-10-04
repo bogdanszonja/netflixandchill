@@ -13,14 +13,13 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/"})
 public class MainPageController extends HttpServlet {
-    private static final long serialVersionUID = 2L;
+    private EpisodeDaoDB episodeDaoDB = EpisodeDaoDB.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
 
-        EpisodeDaoDB episodeDaoDB = new EpisodeDaoDB();
         context.setVariable("seasons", episodeDaoDB.getAll());
 
         engine.process("index.html", context, response.getWriter());

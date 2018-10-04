@@ -5,7 +5,7 @@ import com.codecool.netflixandchill.model.Episode;
 import java.util.List;
 
 public interface EpisodeDao {
-    void add();
+    void add(Episode episode);
 
     Episode find(long episodeId);
 
