@@ -2,6 +2,7 @@ package com.codecool.netflixandchill.controller;
 
 import com.codecool.netflixandchill.config.TemplateEngineUtil;
 import com.codecool.netflixandchill.dao.implementation.EpisodeDaoDB;
+import com.codecool.netflixandchill.model.Episode;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
 
 @WebServlet(urlPatterns = {"/"})
 public class MainPageController extends HttpServlet {
@@ -19,8 +22,9 @@ public class MainPageController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
-
-        context.setVariable("seasons", episodeDaoDB.getAll());
+        Episode episode = Episode.builder().title("b").description("dasdasd").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        episodeDaoDB.add(episode);
+        context.setVariable("episodes", episodeDaoDB.getAll());
 
         engine.process("index.html", context, response.getWriter());
 

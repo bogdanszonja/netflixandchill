@@ -25,7 +25,7 @@ public class Episode extends BaseModel {
     @ManyToOne
     private Season season;
 
-    @ManyToMany(mappedBy = "watchedEpisodes")
+    @ManyToMany(mappedBy = "watchedEpisodes", fetch = FetchType.EAGER)
     private List<User> users = new ArrayList<>();
 
     @Builder
