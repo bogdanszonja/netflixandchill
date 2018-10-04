@@ -27,15 +27,13 @@ public class SimulateJPA {
 
         Series series = new Series();
         Season season = new Season();
-        Episode episode = new Episode(releaseDate, 34, 432, null, null);
 
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(series);
         em.persist(season);
-        em.persist(episode);
+//        em.persist(episode);
         transaction.commit();
-
     }
 
     public static void main(String[] args) {
