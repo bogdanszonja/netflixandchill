@@ -7,7 +7,18 @@
 </head>
 <body>
 <div class="hello" th:each="episode : ${episodes}">
-    <p th:text="${episode}">haliho</p>
+    <table style="width:100%">
+        <tr>
+            <th>Title</th>
+            <th>Decription</th>
+            <th>RunTime</th>
+        </tr>
+        <tr>
+            <td th:text="${episode.getTitle()}"></td>
+            <td th:text="${episode.getDescription()}">Smith</td>
+            <td th:text="${episode.getRuntime()}">50</td>
+        </tr>
+    </table>
 </div>
 
 <form class="example" action="search">
