@@ -26,6 +26,7 @@ public class SearchPageController extends HttpServlet {
 
         SeriesDao seriesDao = SeriesDaoDB.getInstance();
         List<Series> searchedSeries = seriesDao.findBySubstring(searchWord);
+        context.setVariable("series", searchedSeries);
 
         engine.process("search.html", context, response.getWriter());
 
