@@ -5,7 +5,7 @@ import com.codecool.netflixandchill.model.Series;
 import java.util.List;
 
 public interface SeriesDao {
-    void add();
+    void add(Series series);
 
     Series find(long seriesId);
 

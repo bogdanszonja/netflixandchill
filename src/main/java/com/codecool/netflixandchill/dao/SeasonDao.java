@@ -5,7 +5,7 @@ import com.codecool.netflixandchill.model.Season;
 import java.util.List;
 
 public interface SeasonDao {
-    void add();
+    void add(Season season);
 
     Season find(long seasonId);
 

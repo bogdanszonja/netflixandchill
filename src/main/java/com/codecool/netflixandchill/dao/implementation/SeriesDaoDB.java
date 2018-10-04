@@ -3,23 +3,37 @@ package com.codecool.netflixandchill.dao.implementation;
 import com.codecool.netflixandchill.dao.SeriesDao;
 import com.codecool.netflixandchill.model.Series;
 import com.codecool.netflixandchill.util.EMFManager;
+import com.codecool.netflixandchill.util.TransactionManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 public class SeriesDaoDB implements SeriesDao {
+    private TransactionManager transactionManager = TransactionManager.getInstance();
     private EntityManagerFactory emfManager = EMFManager.getInstance();
+    private static SeriesDaoDB instance = null;
+
+    public static SeriesDaoDB getInstance() {
+        if (instance == null) {
+            instance = new SeriesDaoDB();
+        }
+        return instance;
+    }
 
     @Override
-    public void add() {
-
+    public void add(Series series) {
+        EntityManager em = emfManager.createEntityManager();
+        transactionManager.addToTable(em, series);
+        em.close();
     }
 
     @Override
     public Series find(long seriesId) {
         EntityManager em = emfManager.createEntityManager();
-        return em.find(Series.class, seriesId);
+        Series series = em.find(Series.class, seriesId);
+        em.close();
+        return series;
     }
 
     @Override
