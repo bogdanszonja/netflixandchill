@@ -1,9 +1,6 @@
 package com.codecool.netflixandchill.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +11,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Season extends BaseModel {
 
     @OneToMany(mappedBy = "season")
@@ -29,6 +25,13 @@ public class Season extends BaseModel {
 
     @ManyToOne
     private Series series;
+
+    @Builder
+    public Season(String title, String description, Date year, int serialNumber) {
+        super(title, description);
+        this.year = year;
+        this.serialNumber = serialNumber;
+    }
 
     public void addEpisode(Episode episode) {
         episodes.add(episode);
