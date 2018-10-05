@@ -30,7 +30,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "episode_id"))
     private Collection<Episode> watchedEpisodes = new ArrayList<>();
 
@@ -47,6 +47,7 @@ public class User {
 
     public void addWatchedEpisodes(Episode episode) {
         watchedEpisodes.add(episode);
+        episode.addUser(this);
     }
 
 }

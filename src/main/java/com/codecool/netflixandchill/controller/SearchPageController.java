@@ -2,6 +2,7 @@ package com.codecool.netflixandchill.controller;
 
 import com.codecool.netflixandchill.config.TemplateEngineUtil;
 import com.codecool.netflixandchill.dao.EpisodeDao;
+import com.codecool.netflixandchill.dao.FakeEpisode;
 import com.codecool.netflixandchill.dao.SeriesDao;
 import com.codecool.netflixandchill.dao.UserDao;
 import com.codecool.netflixandchill.dao.implementation.EpisodeDaoDB;
@@ -37,11 +38,9 @@ public class SearchPageController extends HttpServlet {
         if (session != null) context.setVariable("userId", session.getAttribute("userId"));
 
         String searchWord = request.getParameter("search");
-        System.out.println(searchWord);
 
-        List<Series> searchedEpisodes=SeriesDaoDB.getInstance().findBySubstring(searchWord);
+        List<FakeEpisode> searchedEpisodes = episodeDao.findBySubstring(searchWord);
         context.setVariable("episodes", searchedEpisodes);
-        searchedEpisodes.forEach(System.out::print);
 
         engine.process("search.html", context, response.getWriter());
 
@@ -59,12 +58,12 @@ public class SearchPageController extends HttpServlet {
             return;
         }
 
-        userDao.addEpisode(episodeDao.find(Long.parseLong(request.getParameter("episode"))).getId(),
+        userDao.addEpisode(Long.parseLong(request.getParameter("episode")),
                 (long) session.getAttribute("userId"));
 
         String searchWord = request.getParameter("search");
 
-        List<Episode> searchedEpisodes= episodeDao.findBySubstring(searchWord);
+        List<FakeEpisode> searchedEpisodes= episodeDao.findBySubstring(searchWord);
         context.setVariable("series", searchedEpisodes);
 
         engine.process("search.html", context, response.getWriter());

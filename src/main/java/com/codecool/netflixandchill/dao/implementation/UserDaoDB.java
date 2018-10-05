@@ -9,6 +9,7 @@ import com.codecool.netflixandchill.util.TransactionManager;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import java.util.Collection;
 import java.util.List;
 
 public class UserDaoDB implements UserDao {
@@ -38,6 +39,8 @@ public class UserDaoDB implements UserDao {
         EntityManager em = emfManager.createEntityManager();
         User user = em.find(User.class, userId);
         em.close();
+        Collection<Episode> watchedEpisodes = user.getWatchedEpisodes();
+        System.out.println(watchedEpisodes.size());
         return user;
     }
 
@@ -51,6 +54,8 @@ public class UserDaoDB implements UserDao {
                     "WHERE u.emailAddress = :email", User.class)
                 .setParameter("email", email)
                 .getResultList();
+        Collection<Episode> watchedEpisodes = result.get(0).getWatchedEpisodes();
+        System.out.println(watchedEpisodes.size());
         em.close();
         return (result.size() != 0) ? result.get(0): null;
     }

@@ -25,10 +25,10 @@ public class Episode extends BaseModel {
     @Column(nullable = false)
     private int serialNumber;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     private Season season;
 
-    @ManyToMany(mappedBy = "watchedEpisodes", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "watchedEpisodes")
     private Collection<User> users = new ArrayList<>();
 
     @Builder
