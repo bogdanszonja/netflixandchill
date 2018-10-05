@@ -11,5 +11,5 @@ public interface EpisodeDao {
 
     List<Episode> getAll();
 
-    List<Episode> findBySubstring(String substring);
+    List<FakeEpisode> findBySubstring(String substring);
 }

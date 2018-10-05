@@ -1,6 +1,7 @@
 package com.codecool.netflixandchill.dao.implementation;
 
 import com.codecool.netflixandchill.dao.EpisodeDao;
+import com.codecool.netflixandchill.dao.FakeEpisode;
 import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.util.EMFManager;
 import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
@@ -9,6 +10,7 @@ import com.codecool.netflixandchill.util.TransactionManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EpisodeDaoDB implements EpisodeDao {
@@ -52,7 +54,7 @@ public class EpisodeDaoDB implements EpisodeDao {
     }
 
     @Override
-    public List<Episode> findBySubstring(String substring) {
+    public List<FakeEpisode> findBySubstring(String substring) {
         EntityManager em = emfManager.createEntityManager();
         List<Episode> result = em.createQuery(
                 "SELECT e " +
@@ -60,6 +62,13 @@ public class EpisodeDaoDB implements EpisodeDao {
                 .setParameter("param", substring)
                 .getResultList();
         em.close();
-        return result;
+
+        List<FakeEpisode> fakeEpisodes = new ArrayList<>();
+
+        for (Episode episode : result) {
+            fakeEpisodes.add(new FakeEpisode(episode));
+        }
+
+        return fakeEpisodes;
     }
 }

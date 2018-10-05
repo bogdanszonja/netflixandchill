@@ -100,12 +100,12 @@ public class MainPageController extends HttpServlet {
         series.addSeason(season4);
         season4.setSeries(series);
 
-        Episode episode = Episode.builder().title("Anita").description("1").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode2 = Episode.builder().title("Bela").description("2").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode3 = Episode.builder().title("Cigi").description("3").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode4 = Episode.builder().title("Dave").description("4").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode5 = Episode.builder().title("Eszik").description("5").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode6 = Episode.builder().title("Fal").description("6").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode = Episode.builder().title("Maniac").description("1").releaseDate(new Date()).runtime(40).serialNumber(0).build();
+        Episode episode2 = Episode.builder().title("Breaking Bad").description("2").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode3 = Episode.builder().title("Game Of Thrones").description("3").releaseDate(new Date()).runtime(55).serialNumber(0).build();
+        Episode episode4 = Episode.builder().title("Dexter").description("4").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode5 = Episode.builder().title("Nip/Tuck").description("5").releaseDate(new Date()).runtime(40).serialNumber(0).build();
+        Episode episode6 = Episode.builder().title("BoJack Horseman").description("6").releaseDate(new Date()).runtime(20).serialNumber(0).build();
         episode.setSeason(season);
         season.addEpisode(episode);
         episode2.setSeason(season2);
@@ -135,12 +135,12 @@ public class MainPageController extends HttpServlet {
         series.addSeason(season24);
         season24.setSeries(series2);
 
-        Episode episode21 = Episode.builder().title("A2").description("1").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode22 = Episode.builder().title("B2").description("2").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode23 = Episode.builder().title("C2").description("3").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode24 = Episode.builder().title("D2").description("4").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode25 = Episode.builder().title("E2").description("5").releaseDate(new Date()).runtime(45).serialNumber(0).build();
-        Episode episode26 = Episode.builder().title("F2").description("6").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode21 = Episode.builder().title("Ash vs Evil Dead").description("1").releaseDate(new Date()).runtime(45).serialNumber(0).build();
+        Episode episode22 = Episode.builder().title("Bob's Burger").description("2").releaseDate(new Date()).runtime(25).serialNumber(0).build();
+        Episode episode23 = Episode.builder().title("Family Guy").description("3").releaseDate(new Date()).runtime(25).serialNumber(0).build();
+        Episode episode24 = Episode.builder().title("Homeland").description("4").releaseDate(new Date()).runtime(40).serialNumber(0).build();
+        Episode episode25 = Episode.builder().title("Scrubs").description("5").releaseDate(new Date()).runtime(20).serialNumber(0).build();
+        Episode episode26 = Episode.builder().title("Westworld").description("6").releaseDate(new Date()).runtime(45).serialNumber(0).build();
         episode21.setSeason(season21);
         season21.addEpisode(episode21);
         episode22.setSeason(season22);

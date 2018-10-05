@@ -20,7 +20,7 @@ public class Series extends BaseModel {
     @Temporal(TemporalType.DATE)
     private Date airDate;
 
-    @OneToMany(mappedBy = "series")
+    @OneToMany(mappedBy = "series", cascade = CascadeType.PERSIST)
     @Column(nullable = false)
     private List<Season> seasons = new ArrayList<>();
 
