@@ -25,7 +25,7 @@ public class Episode extends BaseModel {
     @Column(nullable = false)
     private int serialNumber;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Season season;
 
     @ManyToMany(mappedBy = "watchedEpisodes", fetch = FetchType.EAGER)

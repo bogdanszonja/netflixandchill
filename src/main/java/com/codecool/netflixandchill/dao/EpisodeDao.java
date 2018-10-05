@@ -10,4 +10,6 @@ public interface EpisodeDao {
     Episode find(long episodeId);
 
     List<Episode> getAll();
+
+    List<Episode> findBySubstring(String substring);
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Season extends BaseModel {
 
-    @OneToMany(mappedBy = "season")
+    @OneToMany(mappedBy = "season", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @Column(nullable = false)
     private List<Episode> episodes = new ArrayList<>();
 
