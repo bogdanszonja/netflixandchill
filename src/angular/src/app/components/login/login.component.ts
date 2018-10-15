@@ -15,13 +15,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.requestLoginForm('join').subscribe(type => {
+    this.dataService.loginStatus.subscribe(type => {
       this.showPart = type;
+      console.log(type);
     });
-    this.dataService.requestJoinForm('login').subscribe(type => {
-      this.showPart = type;
-    });
-    console.log(this.showPart);
   }
 
 }

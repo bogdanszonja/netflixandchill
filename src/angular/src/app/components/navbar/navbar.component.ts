@@ -28,12 +28,12 @@ export class NavbarComponent implements OnInit {
   }
 
   join(): void {
-    this.dataService.requestJoinForm('join');
+    this.dataService.handleLogin('join');
   }
 
   login(): void {
     this.isLoggedIn = true;
-    this.dataService.requestLoginForm('login');
+    this.dataService.handleLogin('login');
   }
 
   logout(): void {

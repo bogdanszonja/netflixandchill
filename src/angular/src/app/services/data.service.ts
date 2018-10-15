@@ -1,28 +1,20 @@
-import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/internal/Observable";
-import {of} from "rxjs/internal/observable/of";
+import { Injectable } from '@angular/core';
+
+import {Subject} from "rxjs/internal/Subject";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  // type: string = null;
+  loginStatus = new Subject<string>();
 
   constructor() {
   }
 
-  requestLoginForm(type: string): Observable<string> {
-    if (type === 'login') {
-      return of('login');
-    }
-    return of(null);
+  handleLogin(type: string) {
+    console.log(this.loginStatus);
+    this.loginStatus.next(type);
   }
 
-  requestJoinForm(type: string): Observable<string> {
-    if (type === 'join') {
-      return of('join');
-    }
-    return of(null);
-  }
 }
