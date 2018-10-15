@@ -35,5 +35,6 @@ public class Season extends BaseModel {
 
     public void addEpisode(Episode episode) {
         episodes.add(episode);
+        episode.setSeason(this);
     }
 }

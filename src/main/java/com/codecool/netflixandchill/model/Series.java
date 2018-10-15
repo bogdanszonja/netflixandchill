@@ -39,6 +39,7 @@ public class Series extends BaseModel {
 
     public void addSeason(Season season) {
         seasons.add(season);
+        season.setSeries(this);
     }
 
     public void addGenre(Genre genre) {
