@@ -4,7 +4,6 @@ import com.codecool.netflixandchill.dao.EpisodeDao;
 import com.codecool.netflixandchill.dao.FakeEpisode;
 import com.codecool.netflixandchill.model.Episode;
 import com.codecool.netflixandchill.util.EMFManager;
-import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
 import com.codecool.netflixandchill.util.EMFManager;
 import com.codecool.netflixandchill.util.TransactionManager;
 
@@ -58,7 +57,7 @@ public class EpisodeDaoDB implements EpisodeDao {
         EntityManager em = emfManager.createEntityManager();
         List<Episode> result = em.createQuery(
                 "SELECT e " +
-                        "FROM Episode e WHERE e.title LIKE :param", Episode.class)
+                        "FROM Episode e WHERE e.title LIKE '%' || :param || '%'", Episode.class)
                 .setParameter("param", substring)
                 .getResultList();
         em.close();
